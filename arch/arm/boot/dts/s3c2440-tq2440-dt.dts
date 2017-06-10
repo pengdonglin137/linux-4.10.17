@@ -90,14 +90,10 @@
 
 &nand0 {
 	status = "okay";
-	nand,tacls = <0xa>;
-	nand,twrph0 = <0x19>;
-	nand,twrph1 = <0xa>;
-
-	#address-cells = <1>;
-	#size-cells = <1>;
 
 	tq2440-0 {
+		nand-ecc-mode = "none";
+
 		partitions {
 			compatible = "fixed-partitions";
 			#address-cells = <1>;
