@@ -210,11 +210,11 @@ static struct snd_soc_dai_link s3c24xx_uda134x_dai_link = {
 	.stream_name = "UDA134X",
 	.codec_name = "uda134x-codec",
 	.codec_dai_name = "uda134x-hifi",
-	.cpu_dai_name = "55000000.s3c2440_iis",
+	.cpu_dai_name = "s3c2440-i2s",
+	.platform_name	= "s3c2440-i2s",
 	.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF |
 		   SND_SOC_DAIFMT_CBS_CFS,
 	.ops = &s3c24xx_uda134x_ops,
-	.platform_name	= "55000000.s3c2440_iis",
 };
 
 static struct snd_soc_card snd_soc_s3c24xx_uda134x = {
