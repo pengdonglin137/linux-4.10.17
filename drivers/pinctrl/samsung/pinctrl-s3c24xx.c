@@ -356,14 +356,13 @@ static inline void s3c24xx_demux_eint(struct irq_desc *desc,
 {
 	struct s3c24xx_eint_data *data = irq_desc_get_handler_data(desc);
 	struct irq_chip *chip = irq_desc_get_chip(desc);
-	struct irq_data *irqd = irq_desc_get_irq_data(desc);
-	struct samsung_pin_bank *bank = irq_data_get_irq_chip_data(irqd);
+	struct samsung_pinctrl_drv_data *d = data->drvdata;
 	unsigned int pend, mask;
 
 	chained_irq_enter(chip, desc);
 
-	pend = readl(bank->eint_base + EINTPEND_REG);
-	mask = readl(bank->eint_base + EINTMASK_REG);
+	pend = readl(d->virt_base + EINTPEND_REG);
+	mask = readl(d->virt_base + EINTMASK_REG);
 
 	pend &= ~mask;
 	pend &= range;

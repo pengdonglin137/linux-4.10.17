@@ -222,6 +222,7 @@ struct samsung_pin_ctrl {
  */
 struct samsung_pinctrl_drv_data {
 	struct list_head		node;
+	void __iomem			*virt_base;
 	struct device			*dev;
 	int				irq;
 

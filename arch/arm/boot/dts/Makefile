@@ -984,6 +984,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
 dtb-$(CONFIG_ARCH_ZX) += zx296702-ad1.dtb
 dtb-$(CONFIG_ARCH_ASPEED) += aspeed-bmc-opp-palmetto.dtb \
 	aspeed-ast2500-evb.dtb
+dtb-$(CONFIG_MACH_TQ2440_DT) += \
+	s3c2440-tq2440-dt.dtb
 endif
 
 dtstree		:= $(srctree)/$(src)
