@@ -61,7 +61,7 @@ static int s3c24xx_uda134x_startup(struct snd_pcm_substream *substream)
 	mutex_lock(&priv->clk_lock);
 
 	if (priv->clk_users == 0) {
-		priv->xtal = clk_get(rtd->dev, "xtal");
+		priv->xtal = clk_get(rtd->dev, "mpll");
 		if (IS_ERR(priv->xtal)) {
 			dev_err(rtd->dev, "%s cannot get xtal\n", __func__);
 			ret = PTR_ERR(priv->xtal);
@@ -210,11 +210,11 @@ static struct snd_soc_dai_link s3c24xx_uda134x_dai_link = {
 	.stream_name = "UDA134X",
 	.codec_name = "uda134x-codec",
 	.codec_dai_name = "uda134x-hifi",
-	.cpu_dai_name = "s3c24xx-iis",
+	.cpu_dai_name = "55000000.s3c2440_iis",
 	.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF |
 		   SND_SOC_DAIFMT_CBS_CFS,
 	.ops = &s3c24xx_uda134x_ops,
-	.platform_name	= "s3c24xx-iis",
+	.platform_name	= "55000000.s3c2440_iis",
 };
 
 static struct snd_soc_card snd_soc_s3c24xx_uda134x = {
