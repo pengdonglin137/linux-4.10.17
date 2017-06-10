@@ -108,6 +108,32 @@
 
 		uda,model = <2>;  //UDA134X_UDA1341
 	};
+
+	fb0: fb@4d000000{
+		compatible = "tq2440,lcd";
+		reg = <0x4D000000 0x60>;
+		interrupts = <0 0 16 3>;
+		clocks = <&clocks HCLK_LCD>;
+		clock-names = "lcd";
+		pinctrl-names = "default";
+		pinctrl-0 = <&lcd_pinctrl>;
+		status = "okay";
+
+		lcdcon5 = <0xb09>;
+		type = <0x60>;
+		width = /bits/ 16 <480>;
+		height = /bits/ 16 <272>;
+		pixclock = <100000>;
+		xres = /bits/ 16 <480>;
+		yres = /bits/ 16 <272>;
+		bpp = /bits/ 16 <16>;
+		left_margin = /bits/ 16 <2>;
+		right_margin =/bits/ 16  <2>;
+		hsync_len = /bits/ 16 <41>;
+		upper_margin = /bits/ 16 <2>;
+		lower_margin = /bits/ 16 <2>;
+		vsync_len = /bits/ 16 <10>;
+	};
 };
 
 &watchdog {
