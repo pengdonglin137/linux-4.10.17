@@ -1,0 +1,20 @@
+menuconfig DEMODEVICES
+	bool "DEMO support"
+
+if DEMODEVICES
+
+comment "Demo Devices"
+
+#core
+config DEMO_OF
+	def_bool y
+	depends on OF
+
+#devices
+config DEMO_CON
+	tristate "demo controller drivers"
+
+config DEMO_USER
+	tristate "demo user drivers"
+
+endif
