@@ -43,14 +43,12 @@ static struct of_demo *of_demo_find_controller(struct of_phandle_args *demo_spec
  * of_demo_controller_register - Register a demo controller to DT demo helpers
  * @np:			device node of demo controller
  * @of_demo_xlate:	translation function which converts a phandle
- *			arguments list into a demo_chan structure
+ *			arguments list into a integer value
  * @data		pointer to controller specific data to be used by
  *			translation function
  *
  * Returns 0 on success or appropriate errno value on error.
  *
- * Allocated memory should be freed with appropriate of_demo_controller_free()
- * call.
  */
 int of_demo_controller_register(struct device_node *np,
 				int (*of_demo_xlate)
@@ -111,9 +109,9 @@ void of_demo_controller_free(struct device_node *np)
 EXPORT_SYMBOL_GPL(of_demo_controller_free);
 
 /**
- * of_demo_request - Get the demo
- * @np:		device node to get demo request from
- * @name:	name of desired channel
+ * of_demo_request - Get a integer value from demo controller
+ * @np:		device node to get value request from
+ * @name:	name of desired value
  */
 int of_demo_request(struct device_node *np, const char *name)
 {

@@ -4,6 +4,8 @@
 #include <linux/of_device.h>
 #include <linux/of_demo.h>
 
+MODULE_LICENSE("GPL");
+
 static const struct of_device_id demo_controller_dt_ids[];
 
 static int demo_controller_probe(struct platform_device *pdev)

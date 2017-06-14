@@ -4,6 +4,8 @@
 #include <linux/of_device.h>
 #include <linux/of_demo.h>
 
+MODULE_LICENSE("GPL");
+
 static int demo_user_probe(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
