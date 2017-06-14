@@ -12,7 +12,7 @@ static int demo_user_probe(struct platform_device *pdev)
 	struct device_node *np = dev->of_node;
 	int ret = 0;
 
-	dev_info(dev, "%s enter.\n", __func__);
+	dev_dbg(dev, "%s enter.\n", __func__);
 
 	if (!np) {
 		dev_err(dev, "of_node is NULL\n");
@@ -26,7 +26,7 @@ static int demo_user_probe(struct platform_device *pdev)
 	dev_info(dev, "two: %d\n", ret);
 
 	ret = of_demo_request(np, "three");
-	dev_info(dev, "two: %d\n", ret);
+	dev_info(dev, "three: %d\n", ret);
 
 	return 0;
 }
@@ -35,7 +35,7 @@ static int demo_user_remove(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
 
-	dev_info(dev, "%s enter.\n", __func__);
+	dev_dbg(dev, "%s enter.\n", __func__);
 	return 0;
 }
 

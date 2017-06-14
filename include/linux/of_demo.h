@@ -24,11 +24,6 @@ extern int of_demo_request(struct device_node *np, const char *name);
 extern int of_demo_simple_xlate(struct of_phandle_args *demo_spec,
 		struct of_demo *ofdemo);
 
-extern int of_demo_xlate_two_cells(struct of_phandle_args *demo_spec,
-		struct of_demo *ofdemo);
-
-extern int of_demo_xlate_three_cells(struct of_phandle_args *demo_spec,
-		struct of_demo *ofdemo);
 #else
 static inline int of_demo_controller_register(struct device_node *np,
 		int (*of_demo_xlate) (struct of_phandle_args *, struct of_demo *),
@@ -37,29 +32,17 @@ static inline int of_demo_controller_register(struct device_node *np,
 	return -ENODEV;
 }
 
+static inline int of_demo_request(struct device_node *np, const char *name)
+{
+	return 0;
+}
+
 static inline void of_demo_controller_free(struct device_node *np)
 {
 }
 
 static inline int of_demo_simple_xlate(struct of_phandle_args *demo_spec,
 		struct of_demo *ofdemo)
-{
-	return 0;
-}
-
-static inline int of_demo_xlate_two_cells(struct of_phandle_args *demo_spec,
-		struct of_demo *ofdemo)
-{
-	return 0;
-}
-
-static inline int of_demo_xlate_three_cells(struct of_phandle_args *demo_spec,
-		struct of_demo *ofdemo)
-{
-	return 0;
-}
-
-static inline int of_demo_request(struct device_node *np, const char *name)
 {
 	return 0;
 }

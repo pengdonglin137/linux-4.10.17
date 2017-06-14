@@ -1,6 +1,10 @@
 menuconfig DEMODEVICES
 	bool "DEMO support"
 
+config DEMODEVICES_DEBUG
+        bool "DEMO debugging"
+        depends on DEMODEVICES != n
+
 if DEMODEVICES
 
 comment "Demo Devices"

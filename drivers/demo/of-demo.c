@@ -161,48 +161,28 @@ int of_demo_simple_xlate(struct of_phandle_args *demo_spec,
 {
 	int count = demo_spec->args_count;
 	struct device *dev = ofdemo->of_demo_data;
+	int ret = 0;
 
-	if (count != 1)
+	dev_dbg(dev, "%s enter, count: %d\n", __func__, count);
+	switch (count)
+	{
+	case 1:
+		pr_info("args[0]: %d\n", demo_spec->args[0]);
+		ret = demo_spec->args[0];
+		break;
+	case 2:
+		pr_info("%d x %d = ?\n", demo_spec->args[0], demo_spec->args[1]);
+		ret = demo_spec->args[0] * demo_spec->args[1];
+		break;
+	case 3:
+		pr_info("%d + %d + %d = ?\n", demo_spec->args[0], demo_spec->args[1], demo_spec->args[2]);
+		ret = demo_spec->args[0] + demo_spec->args[1] + demo_spec->args[2];
+		break;
+	default:
+		dev_err(dev, "args count %d is not supported.\n", count);
 		return -EINVAL;
+	}
 
-	dev_info(dev, "%s enter, count: %d\n", __func__, count);
-
-	return demo_spec->args[0];
+	return ret;
 }
 EXPORT_SYMBOL_GPL(of_demo_simple_xlate);
-
-int of_demo_xlate_two_cells(struct of_phandle_args *demo_spec,
-						struct of_demo *ofdemo)
-{
-	int count = demo_spec->args_count;
-	struct device *dev = ofdemo->of_demo_data;
-	int result;
-
-	if (count != 2)
-		return -EINVAL;
-
-	dev_info(dev, "%s enter, count: %d\n", __func__, count);
-
-	result = demo_spec->args[0] * demo_spec->args[1];
-
-	return result;
-}
-EXPORT_SYMBOL_GPL(of_demo_xlate_two_cells);
-
-int of_demo_xlate_three_cells(struct of_phandle_args *demo_spec,
-						struct of_demo *ofdemo)
-{
-	int count = demo_spec->args_count;
-	struct device *dev = ofdemo->of_demo_data;
-	int result;
-
-	if (count != 3)
-		return -EINVAL;
-
-	dev_info(dev, "%s enter, count: %d\n", __func__, count);
-
-	result = demo_spec->args[0] + demo_spec->args[1] + demo_spec->args[2];
-
-	return result;
-}
-EXPORT_SYMBOL_GPL(of_demo_xlate_three_cells);
