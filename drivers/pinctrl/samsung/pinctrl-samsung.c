@@ -1013,8 +1013,6 @@ samsung_pinctrl_get_soc_data(struct samsung_pinctrl_drv_data *d,
 			return ERR_PTR(-EIO);
 	}
 
-	d->virt_base = virt_base[0];
-
 	bank = d->pin_banks;
 	bdata = ctrl->pin_banks;
 	for (i = 0; i < ctrl->nr_banks; ++i, ++bdata, ++bank) {
@@ -1035,6 +1033,12 @@ samsung_pinctrl_get_soc_data(struct samsung_pinctrl_drv_data *d,
 		bank->eint_base = virt_base[0];
 		bank->pctl_base = virt_base[bdata->pctl_res_idx];
 	}
+
+	/*
+	 * For legacy platforms which need to access IO memory through
+	 * samsung_pinctrl_drv_data:
+	 */
+	d->virt_base = virt_base[bdata->pctl_res_idx];
 
 	for_each_child_of_node(node, np) {
 		if (!of_find_property(np, "gpio-controller", NULL))
